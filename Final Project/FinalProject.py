@@ -4,6 +4,8 @@ import numpy as np
 import pydeck as pdk
 import matplotlib.pyplot as plt
 import math
+import os
+
 
 # AI Assisted Page Configuration
 st.set_page_config(
@@ -57,7 +59,25 @@ st.markdown("""
 # Data Cleaning
 def load_and_clean_data(filename='alt_fuel_stations.csv'):
     try:
-        df = pd.read_csv(filename)
+        # DEBUG - Show where we are and what files exist
+        st.write("🔍 DEBUG INFO:")
+        st.write("Current directory:", os.getcwd())
+        st.write("Files in current directory:", os.listdir('.'))
+        
+        # Try different possible locations
+        if os.path.exists('alt_fuel_stations.csv'):
+            st.write("✅ Found CSV in current directory")
+            df = pd.read_csv('alt_fuel_stations.csv')
+        elif os.path.exists('../alt_fuel_stations.csv'):
+            st.write("✅ Found CSV in parent directory")
+            df = pd.read_csv('../alt_fuel_stations.csv')
+        elif os.path.exists('Final Project/alt_fuel_stations.csv'):
+            st.write("✅ Found CSV in Final Project folder")
+            df = pd.read_csv('Final Project/alt_fuel_stations.csv')
+        else:
+            st.error("❌ CSV not found in any expected location!")
+            st.write("Tried: current dir, parent dir, and Final Project folder")
+            return None
 
         essential_columns = [
             'Station Name',
@@ -476,7 +496,7 @@ def chart_company_comparison(df, top_n=10):
     ax.set_ylabel("Number of Stations", color='white')
     ax.tick_params(colors='white', rotation=30, axis='x')
     for spine in ['bottom', 'left']:
-        ax.spines[spine].set_color('white')
+        ax.spines[spine].set_color='white')
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     plt.tight_layout()
