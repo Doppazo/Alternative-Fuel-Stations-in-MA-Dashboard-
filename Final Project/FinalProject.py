@@ -1,17 +1,3 @@
-"""
-Name: Allison Steer, Alejandra Carrion, Rodrigo Rivera
-CS230-2
-Alternative Fuel Stations MA
-URL: http://10.100.146.201:8501
-Database: https://afdc.energy.gov/stations#/analyze?tab=location&access=public&access=private&region=US-MA&country=US
-
-Description:
-This web app creates a dynamic dashboard that visualizes and filters alternative fuel stations in MA.
-Its design allows the user to find and extract records from a table, visualize station locations on a map, see the
-distribution of locations through a heatmap, and provides key analytics of the alternative fuel stations. The filtering
-features makes the web app comprehensive given that the user can easily find the relevant data for their fuel type.
-
-"""
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -69,7 +55,7 @@ st.markdown("""
 
 
 # Data Cleaning
-def load_and_clean_data(filename='Final Project/alt_fuel_stations.csv'):
+def load_and_clean_data(filename='alt_fuel_stations.csv'):
     try:
         df = pd.read_csv(filename)
 
