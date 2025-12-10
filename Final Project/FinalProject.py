@@ -59,24 +59,15 @@ st.markdown("""
 # Data Cleaning
 def load_and_clean_data(filename='alt_fuel_stations.csv'):
     try:
-        # DEBUG - Show where we are and what files exist
-        st.write("🔍 DEBUG INFO:")
-        st.write("Current directory:", os.getcwd())
-        st.write("Files in current directory:", os.listdir('.'))
-        
-        # Try different possible locations
+        # Try different possible locations for the CSV file
         if os.path.exists('alt_fuel_stations.csv'):
-            st.write("✅ Found CSV in current directory")
             df = pd.read_csv('alt_fuel_stations.csv')
         elif os.path.exists('../alt_fuel_stations.csv'):
-            st.write("✅ Found CSV in parent directory")
             df = pd.read_csv('../alt_fuel_stations.csv')
         elif os.path.exists('Final Project/alt_fuel_stations.csv'):
-            st.write("✅ Found CSV in Final Project folder")
             df = pd.read_csv('Final Project/alt_fuel_stations.csv')
         else:
-            st.error("❌ CSV not found in any expected location!")
-            st.write("Tried: current dir, parent dir, and Final Project folder")
+            st.error("Error: CSV file not found. Please check your data file location.")
             return None
 
         essential_columns = [
