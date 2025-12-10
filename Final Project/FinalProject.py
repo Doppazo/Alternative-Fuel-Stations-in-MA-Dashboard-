@@ -496,7 +496,7 @@ def chart_company_comparison(df, top_n=10):
     ax.set_ylabel("Number of Stations", color='white')
     ax.tick_params(colors='white', rotation=30, axis='x')
     for spine in ['bottom', 'left']:
-        ax.spines[spine].set_color='white')
+        ax.spines[spine].set_color('white')
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     plt.tight_layout()
